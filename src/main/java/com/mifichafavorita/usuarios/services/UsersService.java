@@ -39,7 +39,7 @@ public class UsersService {
     public void deleteUser(Integer id) {
         // Ahora lanzamos nuestra excepción personalizada
         if (!usersRepository.existsById(id)) {
-            throw new UserNotFoundException(id);
+            throw new UserNotFoundException(id); //metodo que maneja la exception, "NO ENCONTRADO", el cual es global, y manda la excepcion
         }
         usersRepository.deleteById(id);
     }
