@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.mifichafavorita.usuarios.dto.ErrorResponseDTO;
+
 // @ControllerAdvice = "escucha" todos los controllers de la aplicación
 // Cuando cualquier controller lanza una excepción, Spring la redirige aquí
 @ControllerAdvice
@@ -12,12 +14,12 @@ public class GlobalExceptionHandler {
 
     // @ExceptionHandler le dice: "cuando se lance UserNotFoundException, ejecuta este método"
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ErrorResponseDTO> handleUserNotFound(UserNotFoundException ex) {
+    public ResponseEntity<ErrorResponseDTO> handleUserNotFound(UserNotFoundException exception) {
 
         // Construimos el JSON de error con el mensaje de la excepción
         ErrorResponseDTO error = new ErrorResponseDTO(
             HttpStatus.NOT_FOUND.value(), // 404
-            ex.getMessage()              // "Usuario no encontrado con id: 5"
+            exception.getMessage()              // "Usuario no encontrado con id: 5"
         );
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
