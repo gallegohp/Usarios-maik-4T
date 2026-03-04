@@ -32,9 +32,11 @@ public class UsersController {
         return ResponseEntity.noContent().build(); // 204
     }
 
+    
+
+
     @PutMapping("/{id}")
-    public ResponseEntity<UsersResponseDTO> updateUser(@PathVariable Integer id,
-                                                    @RequestBody UsersRequestDTO requestDTO) {
+    public ResponseEntity<UsersResponseDTO> updateUser(@PathVariable Integer id, @RequestBody UsersRequestDTO requestDTO) {
         UsersResponseDTO responseDTO = usersService.updateUser(id, requestDTO);
         return ResponseEntity.ok(responseDTO); // 200
     }
